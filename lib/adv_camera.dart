@@ -34,6 +34,7 @@ class AdvCamera extends StatefulWidget {
   final bool ignorePermission;
   final String? savePath;
   final int? maxSize;
+  final bool lockLandscapeOrientation;
 
   const AdvCamera({
     Key? key,
@@ -42,6 +43,7 @@ class AdvCamera extends StatefulWidget {
     CameraSessionPreset cameraSessionPreset = CameraSessionPreset.photo,
     FlashType flashType = FlashType.auto,
     bool bestPictureSize = true,
+    bool lockLandscapeOrientation = false, 
     this.onCameraCreated,
     this.onImageCaptured,
     this.fileNamePrefix,
@@ -55,6 +57,7 @@ class AdvCamera extends StatefulWidget {
         this.cameraSessionPreset = cameraSessionPreset,
         this.flashType = flashType,
         this.bestPictureSize = bestPictureSize,
+        this.lockLandscapeOrientation = lockLandscapeOrientation,
         super(key: key);
 
   @override
@@ -167,6 +170,7 @@ class _AdvCameraState extends State<AdvCamera> with VisibilityAwareStateMixin<Ad
       "focusRectColorGreen": widget.focusRectColor?.green ?? 199,
       "focusRectColorBlue": widget.focusRectColor?.blue ?? 12,
       "focusRectSize": widget.focusRectSize ?? 100,
+      "lockLandscapeOrientation": widget.lockLandscapeOrientation,
       //for first run on Android (because on each device the default picture size is vary, for example MI 8 Lite's default is the lowest resolution)
     };
 
