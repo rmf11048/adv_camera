@@ -102,6 +102,7 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
     private WaitForCameraObject waitForCameraObject;
     private int focusRectColor = Color.GREEN;
     private float focusRectSize = 100f;
+    private boolean lockLandscapeOrientation = false;
 
     @SuppressLint({"InflateParams", "ClickableViewAccessibility"})
     AdvCamera(
@@ -159,6 +160,7 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
             Object focusRectColorGreen = params.get("focusRectColorGreen");
             Object focusRectColorBlue = params.get("focusRectColorBlue");
             Object focusRectSize = params.get("focusRectSize");
+            Object lockLandscapeOrientation = params.get("lockLandscapeOrientation");
 
             if (initialCamera != null) {
                 if (initialCamera.equals("front")) {
@@ -205,6 +207,10 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
 
             if (focusRectSize != null) {
                 this.focusRectSize = Float.parseFloat(focusRectSize.toString());
+            }
+
+            if (lockLandscapeOrientation != null) {
+                this.lockLandscapeOrientation = Boolean.parseBoolean(lockLandscapeOrientation.toString());
             }
         }
 
@@ -908,6 +914,10 @@ public class AdvCamera implements MethodChannel.MethodCallHandler,
         int rotation;
         int orientation = mPhotoAngle;
 
+        if (lockLandscapeOrientation) {
+            return 0;
+        }
+        
         Camera.CameraInfo info = new Camera.CameraInfo();
         if (cameraFacing == 0) {
             Camera.getCameraInfo(0, info);
