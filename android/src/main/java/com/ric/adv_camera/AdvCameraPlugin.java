@@ -34,13 +34,13 @@ import io.flutter.plugin.platform.PlatformViewRegistry;
 public class AdvCameraPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware {
     private ActivityPluginBinding activityPluginBinding;
     private FlutterPluginBinding flutterPluginBinding;
-
+/*
     @SuppressWarnings("deprecation")
     public static void registerWith(
             final io.flutter.plugin.common.PluginRegistry.Registrar registrar) {
         register(registrar.activity(), registrar.platformViewRegistry(), registrar.messenger(), null);
     }
-
+*/
     private static void register(Activity activity, PlatformViewRegistry platformViewRegistry, BinaryMessenger binaryMessenger, @Nullable AdvCameraPlugin advCameraPlugin) {
         if (activity == null) {
             // When a background flutter view tries to register the plugin, the registrar has no activity.
